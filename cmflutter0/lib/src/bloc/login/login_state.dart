@@ -5,7 +5,7 @@ class LoginState extends Equatable {
 
   const LoginState({this.count = 0});
 
-  LoginState copyWith(int? count) {
+  LoginState copyWith({int? count}) {
     return LoginState(count: count ?? this.count);
   }
 

@@ -1,5 +1,7 @@
+import 'package:cmflutter0/src/bloc/login/login_bloc.dart';
 import 'package:cmflutter0/src/pages/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,7 +13,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  int _count = 0;
 
   @override
   void initState() {
@@ -46,13 +47,21 @@ class _LoginPageState extends State<LoginPage> {
                   ..._buildButton(),
                   Row(
                     children: [
-                      Text("Debug: ${_count}"),
+                      // Text("Debug: ${context.read<LoginBloc>().state.count}"), ใช้แบบ one time
+                      BlocBuilder<LoginBloc, LoginState>(
+                        //ใช้แบบมีการ track ค่าของ state , เป็นการบอกให้ build แค่ตรงส่วนนี้
+                        builder: (context, state) {
+                          return Text("DebugX: ${state.count}");
+                        },
+                      ),
                       IconButton(
-                        onPressed: _handleClickAdd,
+                        onPressed: () =>
+                            context.read<LoginBloc>().add(LoginEventAdd()),
                         icon: Icon(Icons.add),
                       ),
                       IconButton(
-                        onPressed: _handleClickRemove,
+                        onPressed: () =>
+                            context.read<LoginBloc>().add(LoginEventRemove()),
                         icon: Icon(Icons.remove),
                       )
                     ],
@@ -114,17 +123,4 @@ class _LoginPageState extends State<LoginPage> {
   void _handleClickRegister() {
     Navigator.pushNamed(context, AppRoute.register);
   }
-
-  void _handleClickAdd() {
-    setState(() {
-      _count++;
-    });
-  }
-
-  void _handleClickRemove() {
-    setState(() {
-      _count--;
-    });
-  }
-
 }
