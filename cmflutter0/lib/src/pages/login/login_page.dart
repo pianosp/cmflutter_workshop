@@ -1,3 +1,4 @@
+import 'package:cmflutter0/src/pages/routes.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     _usernameController.text = "";
-    _passwordController.text = "1234";
+    _passwordController.text = "";
   }
 
   @override
@@ -34,8 +35,8 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.all(32.0),
           child: Card(
             child: Container(
+              height: 420,
               padding: EdgeInsets.all(32.0),
-              height: 320,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -52,8 +53,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _handleClickLogin() {
-    print(
-        "CMDev: Login: with (${_usernameController.text}, ${_passwordController.text})");
+    // print(
+    //     "CMDev: Login: with (${_usernameController.text}, ${_passwordController.text})");
+    Navigator.pushNamed(context, AppRoute.home);
   }
 
   void _handleClickReset() {
@@ -66,6 +68,10 @@ class _LoginPageState extends State<LoginPage> {
       ElevatedButton(
         onPressed: _handleClickLogin,
         child: Text("Login"),
+      ),
+      OutlinedButton(
+        onPressed: _handleClickRegister,
+        child: Text("Register"),
       ),
       OutlinedButton(
         onPressed: _handleClickReset,
@@ -89,5 +95,9 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     ];
+  }
+
+  void _handleClickRegister() {
+    Navigator.pushNamed(context, AppRoute.register);
   }
 }
