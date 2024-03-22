@@ -7,6 +7,14 @@ class CmApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.purple,
+          // ···
+          brightness: Brightness.light,
+        ),
+      ),
       title: "CMApp",
       home: LoginPage(),
     );
