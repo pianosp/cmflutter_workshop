@@ -25,9 +25,13 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Login Page",
-          style: TextStyle(color: Colors.white),
+        title: BlocBuilder<LoginBloc, LoginState>(
+          builder: (context, state) {
+            return Text(
+              "Login Page: ${state.count}",
+              style: TextStyle(color: Colors.white),
+            );
+          },
         ),
         backgroundColor: Colors.blue,
       ),
