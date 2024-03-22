@@ -1,9 +1,8 @@
-// import 'package:cmflutter0/src/pages/register/register_page.dart';
-import 'package:cmflutter0/src/pages/register/register_page.dart';
 import 'package:flutter/material.dart';
 
 import 'home/home_page.dart';
 import 'login/login_page.dart';
+import 'register/register_page.dart';
 
 class AppRoute {
   static const home = 'home';
