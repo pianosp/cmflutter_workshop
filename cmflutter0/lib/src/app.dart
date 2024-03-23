@@ -6,6 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/login/login_bloc.dart';
 
+final navigatorState = GlobalKey<
+    NavigatorState>(); //ประกาศใช้งาน ให้สามารถใช้งาน context ที่ใดก็ได้
+
 class CmApp extends StatelessWidget {
   const CmApp({super.key});
 
@@ -18,6 +21,7 @@ class CmApp extends StatelessWidget {
         title: "CMApp",
         routes: AppRoute.all,
         home: LoginPage(),
+        navigatorKey: navigatorState,
       ),
     );
   }
